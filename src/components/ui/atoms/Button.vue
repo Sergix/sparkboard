@@ -25,6 +25,5 @@ export default {
   border-radius: 7px
   background-color: #00473e
   color: white
-  font-family: $type-ui
   padding: 1em 2em 1.05em 2em
 </style>
