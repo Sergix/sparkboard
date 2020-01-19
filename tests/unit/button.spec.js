@@ -4,11 +4,11 @@ import Button from '@/components/ui/atoms/Button.vue'
 describe('Button', () => {
   it('renders text and color', () => {
     const label = 'yay'
-    const color = '#000000'
+    const type = 'warning'
     const wrapper = shallowMount(Button, {
-      propsData: { label, color },
+      propsData: { label, type },
     })
     expect(wrapper.html()).toMatch(label)
-    expect(wrapper.props().color).toMatch(color)
+    expect(wrapper.props().type).toMatch(type)
   })
 })

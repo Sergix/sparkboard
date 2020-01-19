@@ -1,29 +1,43 @@
 <template>
-  <button class="button">{{ label }}</button>
+  <button
+    class="font-semibold text-white rounded-button px-buttonx pt-buttont pb-buttonb"
+    :class="buttonClass"
+  >
+    {{ label }}
+  </button>
 </template>
 
 <script>
+const buttonStates = ['default', 'warning']
+
 export default {
   name: 'ui-button',
   props: {
     label: String,
-    color: String,
+    type: {
+      validator: value => buttonStates.includes(value),
+    },
   },
-  data: function() {
+  data() {
     return {
-      style: {
-        '--color': this.color,
-      },
+      buttonClass: 'button-' + this.type,
     }
   },
 }
 </script>
 
 <style lang="sass" scoped>
-.button
-  border: none
-  border-radius: 7px
-  background-color: #00473e
-  color: white
-  padding: 1em 2em 1.05em 2em
+button
+  @apply bg-tertiary
+  &:hover
+    @apply bg-tertiary-lighter
+  &:active
+    @apply bg-tertiary-darker
+
+.button-warning
+  @apply bg-secondary
+  &:hover
+    @apply bg-secondary-lighter
+  &:active
+    @apply bg-secondary-darker
 </style>
