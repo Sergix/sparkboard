@@ -15,10 +15,15 @@ This project adheres to semantic versioning.
 - `CheckboxField` for checkboxes with labels
 - `Form` as a container for input elements
 - `Login` form page view
+- `SectionImage` for regular images loading from `assets/img`
+- `Landing` home page
+- `Card` as a basic card component
+- Declarations for headings in `sass/base.sass`
 
 ### Changed
 
 - Font loading moved to `globals.scss` to avoid path and sanitization issues
 - `_globals.sass` -> `globals.scss` for multi-line properties
+- Images in `assets/` -> `assets/img`
 
 ### Removed

@@ -15,6 +15,8 @@ module.exports = {
       borderRadius: {
         button: '7px',
         input: '7px',
+        section: '7px',
+        card: '24px',
       },
       colors: {
         primary: '#fbc126',
@@ -30,6 +32,7 @@ module.exports = {
         },
         accent: '#ffa8ba',
         neutral: '#707070',
+        print: '#121212',
       },
       fontFamily: {
         ui: ['"HK Grotesk"', '"Segoe UI"', 'Helvetica', 'sans-serif'],
@@ -41,6 +44,19 @@ module.exports = {
           'Times',
           'serif',
         ],
+      },
+      maxWidth: {
+        '3/4': '75%',
+        '1/2': '50%',
+        '1/4': '25%',
+      },
+      maxHeight: {
+        '2/3': '66.6666666%',
+      },
+      fontSize: {
+        hero: '5rem',
+        sectionHeader: '3rem',
+        smallSection: '2.5rem',
       },
     },
   },

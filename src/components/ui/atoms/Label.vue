@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'label',
+  name: 'ui-label',
   props: {
     text: String,
   },
