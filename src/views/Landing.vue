@@ -1,19 +1,22 @@
 <template>
   <div class="landing flex flex-col max-w-3/4 mr-auto ml-auto">
-    <header class="flex flex-row justify-center items-center p-4 w-full">
+    <header class="flex flex-row justify-center items-center p-4 mt-4 w-full">
       <figure class="logo flex-1"><h1>Sparkboard</h1></figure>
-      <Button
-        class="self-end border-black border"
-        type="action"
+      <ActionButton
+        class="rounded-full pt-buttont pb-buttonb px-16"
         label="Create your board"
       />
     </header>
-    <div class="hero content-section flex-row">
+
+    <div class="hero content-section flex-row my-32">
+      <object
+        class="hero-background z-0 absolute z-neg-1 top-0 right-0 w-2/3 h-3/4 bg-primary"
+      ></object>
       <div class="w-1/2">
         <h1 class="text-hero leading-none font-bold">
           Never again lose a spark of inspiration.
         </h1>
-        <figure></figure>
+        <object class="bg-print p-2 mt-4 z-neg-1 w-full mr-64"></object>
         <p class="text-2xl leading-relaxed mt-12">
           Sparkboard is a place to store your ideas when they come to you,
           whether by a simple thought in your head or coming across an
@@ -28,9 +31,12 @@
         />
       </figure>
     </div>
-    <div class="content-section flex-col">
+
+    <!-- negative bottom margin since cards have .m-12 -->
+    <div class="content-section flex-col -mb-12">
       <h2>Remember ideas</h2>
-      <div class="landing-cards w-full flex flex-row">
+      <!-- negative top margin since cards have .m-12 -->
+      <div class="landing-cards w-full flex flex-row -mt-12">
         <Card
           class="w-1/3"
           title="Card1"
@@ -51,6 +57,7 @@
         />
       </div>
     </div>
+
     <div class="content-section flex-col">
       <h2>Place them on a centralized board</h2>
       <figure
@@ -72,10 +79,12 @@
         </div>
       </figure>
     </div>
+
     <div class="content-section flex-col">
       <h2>Keep multiple boards</h2>
       <img src="@/assets/img/multiple-boards.svg" />
     </div>
+
     <div class="content-section flex-col">
       <h2>Made for humans</h2>
       <section class="flex flex-row justify-center items-center">
@@ -98,7 +107,7 @@
           <span class="font-serif float-right">Real Persson</span>
         </div>
       </section>
-      <section class="flex flex-row justify-center items-center">
+      <section class="flex flex-row justify-center items-center mt-16">
         <div class="max-w-1/2 ml-20 mr-20">
           <h3 class="font-serif font-semibold mb-4">
             Essential to my workflow as a designer.
@@ -119,33 +128,30 @@
         />
       </section>
     </div>
-    <div class="flex-col max-w-3/4 ml-auto mr-auto mt-24">
-      <h1 class="text-center text-6xl leading-tight">
+
+    <div class="flex-col max-w-3/4 ml-auto mr-auto my-24">
+      <h1 class="text-center text-6xl leading-tight text-tertiary">
         So what are you waiting for? Never lose a great idea again.
       </h1>
-      <Button
-        class="text-4xl border-neutral border rounded-full flex ml-auto mr-auto mt-8"
+      <ActionButton
+        class="text-4xl border-neutral border rounded-card flex ml-auto mr-auto mt-8 px-16 py-4"
         label="Create your board"
-        type="action"
       />
     </div>
-    <PageFooter />
   </div>
 </template>
 
 <script>
-import Button from '@/components/ui/atoms/Button'
+import ActionButton from '@/components/ui/atoms/ActionButton'
 import Card from '@/components/ui/molecules/Card'
 import SectionImage from '@/components/ui/atoms/SectionImage'
-import PageFooter from '@/components/ui/molecules/PageFooter'
 
 export default {
   name: 'landing',
   components: {
-    Button,
+    ActionButton,
     Card,
     SectionImage,
-    PageFooter,
   },
 }
 </script>

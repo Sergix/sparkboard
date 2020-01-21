@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'card-image',
+  name: 'section-image',
   props: {
     src: String,
     alt: String,

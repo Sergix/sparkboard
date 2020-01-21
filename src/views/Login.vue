@@ -26,16 +26,20 @@
           label="I have read and accept the privacy policy."
         />
       </Form>
-      <Button label="Submit" class="flex mr-auto ml-auto mt-4" />
+      <FormButton
+        type="submit"
+        label="Submit"
+        class="flex mr-auto ml-auto mt-4"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import FormButton from '@/components/ui/atoms/FormButton'
 import InputField from '@/components/ui/molecules/InputField'
 import CheckboxField from '@/components/ui/molecules/CheckboxField'
 import Form from '@/components/ui/organisms/Form'
-import Button from '@/components/ui/atoms/Button'
 
 export default {
   name: 'login',
@@ -43,7 +47,7 @@ export default {
     InputField,
     CheckboxField,
     Form,
-    Button,
+    FormButton,
   },
 }
 </script>

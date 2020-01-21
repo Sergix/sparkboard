@@ -1,21 +1,22 @@
 <template>
   <button
-    class="font-semibold rounded-button px-buttonx pt-buttont pb-buttonb"
     :class="buttonClass"
+    class="pt-buttont pb-buttonb px-buttonx rounded-button text-white font-semibold"
+    type="submit"
   >
     {{ label }}
   </button>
 </template>
 
 <script>
-const buttonStates = ['default', 'warning', 'action']
+const formButtonStates = ['submit', 'warning']
 
 export default {
-  name: 'ui-button',
+  name: 'form-button',
   props: {
     label: String,
     type: {
-      validator: value => buttonStates.includes(value),
+      validator: value => formButtonStates.includes(value),
     },
   },
   data() {
@@ -27,8 +28,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-button
-  @apply text-white
+.button-submit
   @apply bg-tertiary
   &:hover
     @apply bg-tertiary-lighter
@@ -37,21 +37,8 @@ button
 
 .button-warning
   @apply bg-secondary
-  @apply text-white
   &:hover
     @apply bg-secondary-lighter
   &:active
     @apply bg-secondary-darker
-
-
-.button-action
-  @apply bg-white
-  @apply px-10
-  @apply text-black
-  &:hover
-    @apply text-gray-800
-    @apply bg-white
-  &:active
-    @apply text-black
-    @apply bg-gray-200
 </style>

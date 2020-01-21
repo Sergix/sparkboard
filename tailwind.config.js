@@ -53,10 +53,17 @@ module.exports = {
       maxHeight: {
         '2/3': '66.6666666%',
       },
+      height: {
+        '2/3': '66.6666666%',
+        '3/4': '75%',
+      },
       fontSize: {
         hero: '5rem',
         sectionHeader: '3rem',
         smallSection: '2.5rem',
+      },
+      zIndex: {
+        'neg-1': '-1',
       },
     },
   },

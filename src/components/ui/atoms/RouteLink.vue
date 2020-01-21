@@ -1,5 +1,5 @@
 <template>
-  <a class="text-black font-semibold" :href="href">{{ text }}</a>
+  <a class="font-semibold" :href="href">{{ text }}</a>
 </template>
 
 <script>

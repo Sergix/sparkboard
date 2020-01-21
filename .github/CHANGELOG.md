@@ -9,7 +9,7 @@ This project adheres to semantic versioning.
 - Created CHANGELOG.md to keep up with changes
 - Created `InputField` component for form fields
 - `TextInput` component for form text input
-- `Link` for simple `<a>` elements
+- `RouteLink` for simple `<a>` elements
 - `Label` for form input labels
 - `Checkbox` for checkbox inputs
 - `CheckboxField` for checkboxes with labels
@@ -19,11 +19,13 @@ This project adheres to semantic versioning.
 - `Landing` home page
 - `Card` as a basic card component
 - Declarations for headings in `sass/base.sass`
+- `PageFooter`
 
 ### Changed
 
 - Font loading moved to `globals.scss` to avoid path and sanitization issues
 - `_globals.sass` -> `globals.scss` for multi-line properties
 - Images in `assets/` -> `assets/img`
+- Broke up `Button` -> `FormButton` and `ActionButton`
 
 ### Removed
