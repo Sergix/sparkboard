@@ -10,11 +10,17 @@ const routes = [
     path: '/',
     name: 'landing',
     component: Landing,
+    meta: {
+      transition: 'fade',
+    },
   },
   {
     path: '/login',
     name: 'login',
     component: Login,
+    meta: {
+      transition: 'fade-in-left',
+    },
   },
   // {
   //   path: '/about',

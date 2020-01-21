@@ -1,10 +1,12 @@
 <template>
-  <div class="login flex items-center justify-center max-w-4xl ml-auto mr-auto">
+  <div
+    class="login flex items-center justify-center max-w-6xl ml-auto mr-auto flex-grow"
+  >
     <figure class="vue-logo flex items-center justify-center flex-col w-1/2">
-      <img src="@/assets/img/logo.png" alt="Vue logo" />
+      <SectionImage src="sign-in.svg" alt="Sign In" />
     </figure>
     <div
-      class="login-form flex-1 flex flex-col justify-center items-center w-1/2"
+      class="login-form flex-1 flex flex-col justify-center items-center w-1/2 mb-12"
     >
       <Form title="Create your account">
         <InputField class="mb-6" label="Email" placeholder="email" />
@@ -37,6 +39,7 @@
 
 <script>
 import FormButton from '@/components/ui/atoms/FormButton'
+import SectionImage from '@/components/ui/atoms/SectionImage'
 import InputField from '@/components/ui/molecules/InputField'
 import CheckboxField from '@/components/ui/molecules/CheckboxField'
 import Form from '@/components/ui/organisms/Form'
@@ -48,6 +51,7 @@ export default {
     CheckboxField,
     Form,
     FormButton,
+    SectionImage,
   },
 }
 </script>

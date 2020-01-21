@@ -53,6 +53,9 @@ module.exports = {
       maxHeight: {
         '2/3': '66.6666666%',
       },
+      width: {
+        logo: '16rem',
+      },
       height: {
         '2/3': '66.6666666%',
         '3/4': '75%',

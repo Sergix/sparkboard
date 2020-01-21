@@ -1,13 +1,5 @@
 <template>
   <div class="landing flex flex-col max-w-3/4 mr-auto ml-auto">
-    <header class="flex flex-row justify-center items-center p-4 mt-4 w-full">
-      <figure class="logo flex-1"><h1>Sparkboard</h1></figure>
-      <ActionButton
-        class="rounded-full pt-buttont pb-buttonb px-16"
-        label="Create your board"
-      />
-    </header>
-
     <div class="hero content-section flex-row my-32">
       <object
         class="hero-background z-0 absolute z-neg-1 top-0 right-0 w-2/3 h-3/4 bg-primary"
@@ -133,10 +125,12 @@
       <h1 class="text-center text-6xl leading-tight text-tertiary">
         So what are you waiting for? Never lose a great idea again.
       </h1>
-      <ActionButton
-        class="text-4xl border-neutral border rounded-card flex ml-auto mr-auto mt-8 px-16 py-4"
-        label="Create your board"
-      />
+      <router-link to="login">
+        <ActionButton
+          class="text-4xl border-neutral border rounded-card flex ml-auto mr-auto mt-8 px-16 py-4"
+          label="Create your board"
+        />
+      </router-link>
     </div>
   </div>
 </template>
