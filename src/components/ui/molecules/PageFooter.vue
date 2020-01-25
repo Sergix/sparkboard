@@ -3,8 +3,8 @@
     class="bg-black py-16 px-32 text-white flex flex-row justify-center items-center mt-12"
   >
     <SectionImage
-      class="p-8 mr-16"
-      src="logo-with-text.svg"
+      class="mr-32 w-logo"
+      src="logo/logo-with-text.svg"
       alt="Sparkboard by Sergix"
     />
     <div class="flex-grow flex flex-row">

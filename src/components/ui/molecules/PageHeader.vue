@@ -4,7 +4,7 @@
   >
     <figure class="logo flex-1">
       <router-link to="/"
-        ><SectionImage class="w-logo" src="logo.svg" alt="Sparkboard"
+        ><SectionImage class="w-logo" src="logo/logo.svg" alt="Sparkboard"
       /></router-link>
     </figure>
     <router-link to="login">

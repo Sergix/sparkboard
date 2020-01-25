@@ -19,7 +19,7 @@ Sentry.init({
   maxBreadcrumbs: 50,
   debug: process.env.NODE_ENV === 'production' ? false : true,
   release: 'sparkboard@' + version,
-  integrations: [new Integrations.Vue(Vue, { attachProps: true })],
+  integrations: [new Integrations.Vue({ Vue, attachProps: true })],
 })
 
 new Vue({

@@ -19,7 +19,7 @@
         <SectionImage
           class="w-1/2"
           alt="Sparkboard"
-          src="prototype-black.png"
+          src="illustrations/prototype-black.png"
         />
       </figure>
     </div>
@@ -33,19 +33,19 @@
           class="w-1/3"
           title="Card1"
           desc="This card is pretty cool"
-          img="card1.jpg"
+          img="cards/1.jpg"
         />
         <Card
           class="w-1/3"
           title="Card2"
           desc="Card description 2"
-          img="card2.jpg"
+          img="cards/2.jpg"
         />
         <Card
           class="w-1/3"
           title="Card3"
           desc="Card description 3"
-          img="card3.jpg"
+          img="cards/3.jpg"
         />
       </div>
     </div>
@@ -66,7 +66,7 @@
           <SectionImage
             class="w-1/3 p-8"
             alt="Example boards"
-            src="undraw_content_structure.svg"
+            src="illustrations/undraw_content_structure.svg"
           />
         </div>
       </figure>
@@ -74,7 +74,10 @@
 
     <div class="content-section flex-col">
       <h2>Keep multiple boards</h2>
-      <img src="@/assets/img/multiple-boards.svg" />
+      <SectionImage
+        src="illustrations/multiple-boards.svg"
+        alt="Multiple boards"
+      />
     </div>
 
     <div class="content-section flex-col">
@@ -82,7 +85,7 @@
       <section class="flex flex-row justify-center items-center">
         <SectionImage
           class="w-1/2 max-w-1/4"
-          src="portrait2.png"
+          src="portraits/1.jpg"
           alt="Testimonial image"
         />
         <div class="max-w-1/2 ml-20 mr-20">
@@ -115,7 +118,7 @@
         </div>
         <SectionImage
           class="w-1/2 max-w-1/4"
-          src="portrait1.png"
+          src="portraits/2.jpg"
           alt="Testimonial image"
         />
       </section>

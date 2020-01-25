@@ -3,7 +3,7 @@
     class="login flex items-center justify-center max-w-6xl ml-auto mr-auto flex-grow"
   >
     <figure class="vue-logo flex items-center justify-center flex-col w-1/2">
-      <SectionImage src="sign-in.svg" alt="Sign In" />
+      <SectionImage src="illustrations/sign-in.svg" alt="Sign In" />
     </figure>
     <div
       class="login-form flex-1 flex flex-col justify-center items-center w-1/2 mb-12"

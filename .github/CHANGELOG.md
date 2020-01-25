@@ -30,5 +30,7 @@ This project adheres to semantic versioning.
 - Moved global `html` style decleration -> `App.vue`
 - Moved style imports -> `main.js` for Webpack building
 - Moved Gelasio font import -> `fonts.scss`
+- Organized `assets/img`
+- Compressed images
 
 ### Removed
