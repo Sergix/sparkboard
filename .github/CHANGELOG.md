@@ -20,12 +20,15 @@ This project adheres to semantic versioning.
 - `Card` as a basic card component
 - Declarations for headings in `sass/base.sass`
 - `PageFooter`
+- Added Sentry integration
 
 ### Changed
 
-- Font loading moved to `globals.scss` to avoid path and sanitization issues
 - `_globals.sass` -> `globals.scss` for multi-line properties
 - Images in `assets/` -> `assets/img`
 - Broke up `Button` -> `FormButton` and `ActionButton`
+- Moved global `html` style decleration -> `App.vue`
+- Moved style imports -> `main.js` for Webpack building
+- Moved Gelasio font import -> `fonts.scss`
 
 ### Removed

@@ -5,9 +5,9 @@ module.exports = {
       // @/ is an alias to src/
       // so this assumes you have a file named `src/variables.sass`
       // Note: this option is named as "data" in sass-loader v7
-      sass: {
-        prependData: `@import "~@/sass/globals.scss"`,
-      },
+      // sass: {
+      //   prependData: `@import "~@/sass/globals.scss"`,
+      // },
     },
   },
 }

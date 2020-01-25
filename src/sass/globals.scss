@@ -1,70 +1,35 @@
-/* Global variables */
-
-/* Imports */
+/* Global Style Declarations */
+//
+// Tailwind outlines a specific way of importing and declaring global styles
+// and other resources:
+//  https://tailwindcss.com/docs/using-with-preprocessors
+//
 
 /* purgecss start ignore */
 @import 'tailwindcss/base';
 
-@import url('https://fonts.googleapis.com/css?family=Gelasio&display=swap');
-
-@font-face {
-  font-family: 'HK Grotesk';
-  src: local('HKGrotesk'), local('HK Grotesk'), local('HankenGrotesk');
-  unicode-range: U+000-5FF;
+/* global declerations */
+h1 {
+  @apply text-4xl;
+  @apply font-semibold;
 }
 
-@font-face {
-  font-family: 'HK Grotesk';
-  src: url('~@/assets/fonts/hk-grotesk/hkgrotesk-bold.eot'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-bold.eot?#iefix')
-      format('embedded-opentype'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-bold.woff2') format('woff2'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-bold.woff') format('woff'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-bold.ttf') format('truetype');
-  font-weight: bold 700;
-  font-style: normal;
-  unicode-range: U+000-5FF;
+h2 {
+  @apply text-sectionHeader;
+  @apply font-semibold;
 }
 
-@font-face {
-  font-family: 'HK Grotesk';
-  src: url('~@/assets/fonts/hk-grotesk/hkgrotesk-medium.eot'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-medium.eot?#iefix')
-      format('embedded-opentype'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-medium.woff2') format('woff2'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  unicode-range: U+000-5FF;
+h3 {
+  @apply text-4xl;
+  @apply font-semibold;
 }
 
-@font-face {
-  font-family: 'HK Grotesk';
-  src: url('~@/assets/fonts/hk-grotesk/hkgrotesk-regular.eot'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-regular.eot?#iefix')
-      format('embedded-opentype'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-regular.woff2') format('woff2'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-regular.woff') format('woff'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-regular.ttf') format('truetype');
-  font-weight: normal 400;
-  font-style: normal;
-  unicode-range: U+000-5FF;
+h4 {
+  @apply text-xl;
+  @apply font-medium;
 }
+/* end global declerations */
 
-@font-face {
-  font-family: 'HK Grotesk';
-  src: url('~@/assets/fonts/hk-grotesk/hkgrotesk-semibold.eot'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-semibold.eot?#iefix')
-      format('embedded-opentype'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-semibold.woff2') format('woff2'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-semibold.woff') format('woff'),
-    url('~@/assets/fonts/hk-grotesk/hkgrotesk-semibold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  unicode-range: U+000-5FF;
-}
-
-@import 'base.sass';
 @import 'tailwindcss/components';
 /* purgecss end ignore */
 

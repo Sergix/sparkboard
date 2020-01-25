@@ -23,6 +23,16 @@ export default {
 </script>
 
 <style lang="sass">
+//
+// this decleration used to exist in globals.scss, but webpack cleaned
+// the rule in that file so it was moved here
+//
+html, body
+  @apply font-ui
+  @apply text-print
+  height: 100%
+  margin: 0
+
 #app
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
