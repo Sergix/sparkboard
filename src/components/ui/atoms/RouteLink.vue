@@ -10,7 +10,7 @@ const isLink = link =>
   )
 
 export default {
-  name: 'link',
+  name: 'route-link',
   props: {
     href: {
       validation: value => isLink(value),
