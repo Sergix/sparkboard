@@ -1,13 +1,9 @@
 <template>
   <figure
-    class="flex flex-col border border-gray-400 rounded-card m-12 overflow-hidden shadow-xl"
+    class="flex flex-col border border-gray-400 rounded-card overflow-hidden shadow-xl bg-white"
   >
     <div class="overflow-hidden max-h-2/3 flex-1">
-      <SectionImage
-        class="object-contain card-img"
-        :src="img"
-        alt="Card Example"
-      />
+      <img class="object-contain card-img" :src="img" alt="Card Example" />
     </div>
     <div class="ml-6 mt-2 mb-4">
       <h4>{{ title }}</h4>
@@ -21,8 +17,6 @@
 </template>
 
 <script>
-import SectionImage from '@/components/ui/atoms/SectionImage'
-
 export default {
   name: 'card',
   props: {
@@ -30,8 +24,6 @@ export default {
     desc: String,
     img: String,
   },
-  components: {
-    SectionImage,
-  },
+  components: {},
 }
 </script>

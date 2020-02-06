@@ -1,23 +1,29 @@
 <template>
   <div id="app" class="flex flex-col h-full">
-    <PageHeader class="z-10" />
+    <LandingHeader class="z-10" v-if="!disabledRoutes.includes($route.name)" />
     <div class="flex-grow">
       <vue-page-transition name="fade-in-left">
         <router-view />
       </vue-page-transition>
     </div>
-    <PageFooter />
+    <LandingFooter v-if="!disabledRoutes.includes($route.name)" />
   </div>
 </template>
 
 <script>
-import PageHeader from '@/components/ui/molecules/PageHeader'
-import PageFooter from '@/components/ui/molecules/PageFooter'
+import LandingHeader from '@/components/ui/molecules/LandingHeader'
+import LandingFooter from '@/components/ui/molecules/LandingFooter'
 
 export default {
   components: {
-    PageHeader,
-    PageFooter,
+    LandingHeader,
+    LandingFooter,
+  },
+  data() {
+    return {
+      // don't include the standard header and footer on these pages
+      disabledRoutes: ['board'],
+    }
   },
 }
 </script>

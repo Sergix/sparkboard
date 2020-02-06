@@ -1,7 +1,13 @@
 <template>
   <div>
     <Label :text="label" class="block" />
-    <TextInput :placeholder="placeholder" :type="type" class="mt-2 w-full" />
+    <TextInput
+      @input="handleInput"
+      v-model="content"
+      :placeholder="placeholder"
+      :type="type"
+      class="mt-2 w-full"
+    />
   </div>
 </template>
 
@@ -15,10 +21,21 @@ export default {
     label: String,
     placeholder: String,
     type: String,
+    value: String,
   },
   components: {
     Label,
     TextInput,
+  },
+  data() {
+    return {
+      content: this.value,
+    }
+  },
+  methods: {
+    handleInput() {
+      this.$emit('input', this.content)
+    },
   },
 }
 </script>

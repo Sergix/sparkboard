@@ -30,22 +30,22 @@
       <!-- negative top margin since cards have .m-12 -->
       <div class="landing-cards w-full flex flex-row -mt-12">
         <Card
-          class="w-1/3"
+          class="w-1/3 m-12"
           title="Card1"
           desc="This card is pretty cool"
           img="cards/1.jpg"
         />
         <Card
-          class="w-1/3"
+          class="w-1/3 m-12"
           title="Card2"
           desc="Card description 2"
-          img="cards/2.jpg"
+          img="@/assets/img/cards/2.jpg"
         />
         <Card
-          class="w-1/3"
+          class="w-1/3 m-12"
           title="Card3"
           desc="Card description 3"
-          img="cards/3.jpg"
+          img="@/assets/img/cards/3.jpg"
         />
       </div>
     </div>

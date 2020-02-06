@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Landing from '../views/Landing.vue'
 import Login from '../views/Login.vue'
+import Board from '../views/Board.vue'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
+    meta: {
+      transition: 'fade-in-left',
+    },
+  },
+  {
+    path: '/board',
+    name: 'board',
+    component: Board,
     meta: {
       transition: 'fade-in-left',
     },

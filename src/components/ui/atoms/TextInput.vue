@@ -3,6 +3,8 @@
     :name="name"
     :placeholder="placeholder"
     :type="type"
+    @input="handleInput"
+    v-model="content"
     class="rounded-input bg-white border-black border px-4 pt-inputt pb-inputb placeholder-neutral"
   />
 </template>
@@ -17,6 +19,17 @@ export default {
     placeholder: String,
     type: {
       validator: value => inputStates.includes(value),
+    },
+    value: String,
+  },
+  data() {
+    return {
+      content: this.value,
+    }
+  },
+  methods: {
+    handleInput() {
+      this.$emit('input', this.content)
     },
   },
 }

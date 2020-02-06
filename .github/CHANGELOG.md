@@ -21,6 +21,8 @@ This project adheres to semantic versioning.
 - Declarations for headings in `sass/base.sass`
 - `PageFooter`
 - Added Sentry integration
+- Vuex store for board and account
+- `Board` view as card editing page
 
 ### Changed
 

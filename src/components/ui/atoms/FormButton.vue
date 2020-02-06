@@ -2,7 +2,8 @@
   <button
     :class="buttonClass"
     class="pt-buttont pb-buttonb px-buttonx rounded-button text-white font-semibold"
-    type="submit"
+    type="button"
+    @click="$emit('click')"
   >
     {{ label }}
   </button>
@@ -14,8 +15,13 @@ const formButtonStates = ['submit', 'warning']
 export default {
   name: 'form-button',
   props: {
-    label: String,
+    label: {
+      type: String,
+      required: true,
+    },
     type: {
+      type: String,
+      default: 'submit',
       validator: value => formButtonStates.includes(value),
     },
   },

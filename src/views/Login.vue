@@ -42,7 +42,7 @@ import FormButton from '@/components/ui/atoms/FormButton'
 import SectionImage from '@/components/ui/atoms/SectionImage'
 import InputField from '@/components/ui/molecules/InputField'
 import CheckboxField from '@/components/ui/molecules/CheckboxField'
-import Form from '@/components/ui/organisms/Form'
+import Form from '@/components/ui/atoms/Form'
 
 export default {
   name: 'login',
