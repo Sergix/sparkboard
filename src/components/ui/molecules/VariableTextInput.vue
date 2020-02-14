@@ -1,25 +1,25 @@
 <template>
-  <input
-    :name="name"
+  <TextInput
     :placeholder="placeholder"
     :type="type"
+    :style="'width: ' + content.length + 'ch'"
     @input="handleInput"
     v-model="content"
   />
 </template>
 
 <script>
-const inputStates = ['text', 'password']
+import TextInput from '@/components/ui/atoms/TextInput'
 
 export default {
-  name: 'text-input',
+  name: 'variable-text-input',
   props: {
-    name: String,
     placeholder: String,
-    type: {
-      validator: value => inputStates.includes(value),
-    },
+    type: String,
     value: String,
+  },
+  components: {
+    TextInput,
   },
   data() {
     return {

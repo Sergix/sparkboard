@@ -1,14 +1,17 @@
 <template>
-  <!-- TODO -->
-  <!-- Make card a dynamic modal -->
-
   <Form title="Edit card" v-on:submit="saveCard">
     <div class="flex flex-row">
       <div class="flex flex-col w-1/2 mb-8">
         <section class="mb-4">
           <div class="flex mb-2">
             <h4>Image</h4>
-            <IconButton icon="upload" name="Upload image" class="ml-2" />
+            <uploadcare
+              :publicKey="$store.state.uploadcare"
+              @success="onUploadSuccess"
+              @error="onUploadError"
+            >
+              <IconButton icon="upload" name="Upload image" class="ml-2" />
+            </uploadcare>
           </div>
           <img class="w-3/4 rounded-section" :src="card.img" alt="Card image" />
         </section>
@@ -29,6 +32,7 @@
           label="Title"
           v-model="cardForm.title"
           type="text"
+          v-focus
         />
         <InputField
           class="mb-8"
@@ -52,6 +56,9 @@ import Form from '@/components/ui/atoms/Form'
 import FormButton from '@/components/ui/atoms/FormButton'
 import InputField from '@/components/ui/molecules/InputField'
 import IconButton from '@/components/ui/molecules/IconButton'
+
+import { captureException } from '@sentry/browser'
+import Uploadcare from 'uploadcare-vue'
 
 import { mapActions } from 'vuex'
 
@@ -77,6 +84,7 @@ export default {
     FormButton,
     InputField,
     IconButton,
+    Uploadcare,
   },
   computed: {
     cardForm() {
@@ -88,6 +96,15 @@ export default {
     ...mapActions({
       editProperty: 'editCard',
     }),
+    onUploadSuccess(event) {
+      this.$store.dispatch('board/editCard', {
+        id: this.card.id,
+        img: event.cdnUrl,
+      })
+    },
+    onUploadError(event) {
+      captureException(event)
+    },
     saveCard() {
       // get all the properties that were modified
       const modifiedProps = Object.keys(this.card).filter(
@@ -98,8 +115,7 @@ export default {
       modifiedProps.map(prop =>
         this.$store.dispatch('board/editCard', {
           id: this.card.id,
-          property: prop,
-          newValue: this.cardForm[prop],
+          [prop]: this.cardForm[prop],
         })
       )
 

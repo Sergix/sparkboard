@@ -3,7 +3,7 @@
   "arrowParens": "avoid",
   "bracketSpacing": true,
   "endOfLine": "lf",
-  "trailingComma": "es5",
+  "trailingComma": "all",
   "useTabs": false,
   "vueIndentScriptAndStyle": false,
   "printWidth": 80,

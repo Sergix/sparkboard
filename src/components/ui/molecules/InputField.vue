@@ -6,7 +6,7 @@
       v-model="content"
       :placeholder="placeholder"
       :type="type"
-      class="mt-2 w-full"
+      class="mt-2 w-full rounded-input bg-white border-black border px-4 pt-inputt pb-inputb placeholder-neutral"
     />
   </div>
 </template>

@@ -16,6 +16,15 @@ Vue.config.productionTip = false
 Vue.use(VuePageTransition)
 Vue.use(VueModal, { dynamic: true, injectModalsContainer: true })
 
+Vue.directive('focus', {
+  bind(el) {
+    el.focus()
+  },
+  update(el, binding) {
+    if (binding.value) el.focus()
+  },
+})
+
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   maxBreadcrumbs: 50,

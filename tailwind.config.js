@@ -9,7 +9,7 @@ module.exports = {
         inputt: '0.75rem',
         inputb: '0.8rem',
 
-        // fixes slight offset in inline components
+        // fixes slight optical offset in inline components
         opticalfix: '0.125rem',
       },
       borderRadius: {

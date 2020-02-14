@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="flex flex-col h-full">
+    <AccountHeader class="z-10" v-if="disabledRoutes.includes($route.name)" />
     <LandingHeader class="z-10" v-if="!disabledRoutes.includes($route.name)" />
     <div class="flex-grow">
       <vue-page-transition name="fade-in-left">
@@ -11,18 +12,20 @@
 </template>
 
 <script>
+import AccountHeader from '@/components/ui/molecules/AccountHeader'
 import LandingHeader from '@/components/ui/molecules/LandingHeader'
 import LandingFooter from '@/components/ui/molecules/LandingFooter'
 
 export default {
   components: {
+    AccountHeader,
     LandingHeader,
     LandingFooter,
   },
   data() {
     return {
       // don't include the standard header and footer on these pages
-      disabledRoutes: ['board'],
+      disabledRoutes: ['board', 'dashboard'],
     }
   },
 }

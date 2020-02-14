@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Landing from '../views/Landing.vue'
 import Login from '../views/Login.vue'
 import Board from '../views/Board.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,14 @@ const routes = [
     path: '/board',
     name: 'board',
     component: Board,
+    meta: {
+      transition: 'fade-in-left',
+    },
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: Dashboard,
     meta: {
       transition: 'fade-in-left',
     },
