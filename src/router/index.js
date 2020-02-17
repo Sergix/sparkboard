@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Landing from '../views/Landing.vue'
 import Login from '../views/Login.vue'
+import CreateAccount from '../views/CreateAccount.vue'
 import Board from '../views/Board.vue'
 import Dashboard from '../views/Dashboard.vue'
+import { stitchApp } from '@/stitch/app'
 
 Vue.use(VueRouter)
 
@@ -23,6 +25,10 @@ const routes = [
     meta: {
       transition: 'fade-in-left',
     },
+    beforeEnter: (to, from, next) => {
+      if (stitchApp.auth.isLoggedIn) next('/dashboard')
+      else next()
+    },
   },
   {
     path: '/board',
@@ -31,6 +37,10 @@ const routes = [
     meta: {
       transition: 'fade-in-left',
     },
+    beforeEnter: (to, from, next) => {
+      if (!stitchApp.auth.isLoggedIn) next('/login')
+      else next()
+    },
   },
   {
     path: '/dashboard',
@@ -38,6 +48,22 @@ const routes = [
     component: Dashboard,
     meta: {
       transition: 'fade-in-left',
+    },
+    beforeEnter: (to, from, next) => {
+      if (!stitchApp.auth.isLoggedIn) next('/login')
+      else next()
+    },
+  },
+  {
+    path: '/new',
+    name: 'new',
+    component: CreateAccount,
+    meta: {
+      transition: 'fade-in-left',
+    },
+    beforeEnter: (to, from, next) => {
+      if (stitchApp.auth.isLoggedIn) next('/dashboard')
+      else next()
     },
   },
   // {

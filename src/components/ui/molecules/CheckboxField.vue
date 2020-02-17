@@ -1,6 +1,12 @@
 <template>
   <div class="flex">
-    <Checkbox :id="name" class="mr-4" v-bind:checked="checked" />
+    <Checkbox
+      @input="handleInput"
+      v-model="content"
+      :id="name"
+      class="mr-4"
+      v-bind:checked="checked"
+    />
     <label :for="name" class="text-sm">{{ label }}</label>
   </div>
 </template>
@@ -14,9 +20,20 @@ export default {
     name: String,
     label: String,
     checked: Boolean,
+    value: Boolean,
   },
   components: {
     Checkbox,
+  },
+  data() {
+    return {
+      content: this.value,
+    }
+  },
+  methods: {
+    handleInput() {
+      this.$emit('input', this.content)
+    },
   },
 }
 </script>

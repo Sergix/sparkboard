@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col h-screen">
-    <AccountHeader class="z-10" v-if="disabledRoutes.includes($route.name)" />
     <!-- board title -->
     <div
       class="flex flex-row flex-0 py-4 pl-8 border-b border-t border-r-0 border-l-0 border-neutral z-10 bg-white"
@@ -91,7 +90,6 @@
 </template>
 
 <script>
-import AccountHeader from '@/components/ui/molecules/AccountHeader'
 import VariableTextInput from '@/components/ui/molecules/VariableTextInput'
 import IconButton from '@/components/ui/molecules/IconButton'
 import Card from '@/components/ui/molecules/Card'
@@ -107,7 +105,6 @@ import Uploadcare from 'uploadcare-vue'
 export default {
   name: 'board',
   components: {
-    AccountHeader,
     IconButton,
     Card,
     VariableTextInput,

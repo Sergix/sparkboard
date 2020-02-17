@@ -4,23 +4,36 @@
       <SectionImage class="w-logo p-4" src="logo/logo.svg" alt="Sparkboard" />
     </router-link>
     <div class="flex-1 flex flex-row items-center ml-32 mt-1">
-      <RouteLink class="px-8" text="Boards" href="#" />
-      <RouteLink class="px-8" text="Settings" href="#" />
-      <RouteLink class="px-8" text="Help" href="#" />
+      <router-link to="dashboard">Boards</router-link>
+      <router-link to="dashboard">Settings</router-link>
+      <router-link to="dashboard">Help</router-link>
     </div>
-    <RouteLink class="mt-1 text-tertiary" text="Sign Out" href="#" />
+    <a class="mt-1 text-tertiary cursor-pointer" to="#" @click="logout">
+      Logout
+    </a>
   </nav>
 </template>
 
 <script>
-import RouteLink from '@/components/ui/atoms/RouteLink'
+// import RouteLink from '@/components/ui/atoms/RouteLink'
 import SectionImage from '@/components/ui/atoms/SectionImage'
 
 export default {
   name: 'account-header',
   components: {
-    RouteLink,
+    // RouteLink,
     SectionImage,
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('account/logout')
+    },
   },
 }
 </script>
+
+<style lang="sass" scoped>
+a
+  @apply px-8
+  @apply font-medium
+</style>

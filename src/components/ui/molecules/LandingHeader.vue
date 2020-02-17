@@ -7,7 +7,7 @@
         ><SectionImage class="w-logo" src="logo/logo.svg" alt="Sparkboard"
       /></router-link>
     </figure>
-    <router-link to="login">
+    <router-link to="new">
       <ActionButton
         class="rounded-full border border-black pt-buttont pb-buttonb px-16"
         label="Create your board"

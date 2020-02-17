@@ -8,7 +8,7 @@
         </p>
         <p class="flex-0">{{ cardCount }} cards</p>
       </div>
-      <img class="flex-1 w-1/2" :src="board.img" />
+      <img class="flex-1 w-1/2" :src="board.coverImg" />
     </div>
   </section>
 </template>

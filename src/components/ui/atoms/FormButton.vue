@@ -2,7 +2,7 @@
   <button
     :class="buttonClass"
     class="pt-buttont pb-buttonb px-buttonx rounded-button text-white font-semibold"
-    type="button"
+    type="submit"
     @click="$emit('click')"
   >
     {{ label }}

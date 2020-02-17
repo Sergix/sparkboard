@@ -3,7 +3,7 @@
     <div class="flex flex-1 flex-row">
       <div class="w-1/2 text-center m-auto">
         <h1 class="text-hero font-semibold leading-none">
-          Hello, Peyton!
+          Welcome back!
         </h1>
       </div>
 
@@ -39,9 +39,11 @@ export default {
   },
   computed: {
     ...mapState({
-      firstName: state => state.account.firstName,
       boards: state => state.boards,
     }),
+  },
+  mounted() {
+    this.$store.dispatch('getBoards')
   },
 }
 </script>

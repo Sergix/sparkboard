@@ -13,6 +13,7 @@
     "@sentry/browser": "^5.11.1",
     "@sentry/integrations": "^5.11.1",
     "core-js": "^3.4.4",
+    "mongodb-stitch-browser-sdk": "^4.8.0",
     "tailwindcss": "^1.1.4",
     "uploadcare-vue": "^1.0.0",
     "vue": "^2.6.10",
