@@ -2,11 +2,11 @@
   <div id="app" class="flex flex-col h-full">
     <AccountHeader class="z-10" v-if="disabledRoutes.includes($route.name)" />
     <LandingHeader class="z-10" v-if="!disabledRoutes.includes($route.name)" />
-    <div class="flex-grow">
-      <vue-page-transition name="fade-in-left">
-        <router-view />
-      </vue-page-transition>
-    </div>
+    <!-- <div class="flex-grow"> -->
+    <vue-page-transition class="flex-grow" name="fade-in-left">
+      <router-view />
+    </vue-page-transition>
+    <!-- </div> -->
     <LandingFooter v-if="!disabledRoutes.includes($route.name)" />
   </div>
 </template>

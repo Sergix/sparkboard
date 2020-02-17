@@ -3,9 +3,12 @@ import VueRouter from 'vue-router'
 import Landing from '../views/Landing.vue'
 import Login from '../views/Login.vue'
 import CreateAccount from '../views/CreateAccount.vue'
+import ConfirmAccount from '../views/ConfirmAccount.vue'
+import AccountConfirmed from '../views/AccountConfirmed.vue'
 import Board from '../views/Board.vue'
 import Dashboard from '../views/Dashboard.vue'
 import { stitchApp } from '@/stitch/app'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -14,6 +17,22 @@ const routes = [
     path: '/',
     name: 'landing',
     component: Landing,
+    meta: {
+      transition: 'fade',
+    },
+  },
+  {
+    path: '/confirm',
+    name: 'confirm',
+    component: ConfirmAccount,
+    meta: {
+      transition: 'fade',
+    },
+  },
+  {
+    path: '/confirmed',
+    name: 'confirmed',
+    component: AccountConfirmed,
     meta: {
       transition: 'fade',
     },
@@ -39,6 +58,9 @@ const routes = [
     },
     beforeEnter: (to, from, next) => {
       if (!stitchApp.auth.isLoggedIn) next('/login')
+      // if board title is empty
+      if (store.getters.getCurrentBoard.state.title === String)
+        next('/dashboard')
       else next()
     },
   },

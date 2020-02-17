@@ -11,10 +11,11 @@
         <h2 class="font-medium text-center mb-4">Boards</h2>
         <div class="mx-auto flex flex-wrap justify-center">
           <DashboardCard
-            class="m-2 w-2/5"
+            class="m-2 w-2/5 cursor-pointer"
             v-for="board in boards"
-            :key="board.id"
-            :boardId="board.id"
+            :key="board.title"
+            :boardTitle="board.title"
+            @click="openBoard(board.title)"
           />
           <div class="flex flex-col w-2/5 m-2 justify-center items-center">
             <IconButton icon="plus-circle" name="Create new board" />
@@ -41,6 +42,15 @@ export default {
     ...mapState({
       boards: state => state.boards,
     }),
+  },
+  methods: {
+    openBoard(title) {
+      //
+      // TODO
+      // NEED way to ensure no board titles are the same per user
+      //
+      this.$store.dispatch('loadBoard', title)
+    },
   },
   mounted() {
     this.$store.dispatch('getBoards')

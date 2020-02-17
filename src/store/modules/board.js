@@ -1,6 +1,10 @@
 const getCardIndex = id => state.cards.findIndex(card => card.id === id)
 
 const state = {
+  //
+  // TODO
+  // have card management mapped to a stitch function?
+  //
   cards: Array,
   title: String,
   coverImg: String,
@@ -29,6 +33,11 @@ const mutations = {
   },
   setCards(_, cardList) {
     state.cards = cardList
+  },
+  setBoard(_, board) {
+    state.cards = board.cards
+    state.title = board.title
+    state.coverImg = board.coverImg
   },
 }
 

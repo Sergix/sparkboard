@@ -1,5 +1,8 @@
 <template>
-  <section class="flex flex-col border border-black rounded-section">
+  <section
+    @click="$emit('click')"
+    class="flex flex-col border border-black rounded-section"
+  >
     <h4 class="p-4">{{ board.title }}</h4>
     <div class="flex flex-1 flex-row p-4">
       <div class="flex w-1/2 flex-col flex-0">
@@ -17,12 +20,12 @@
 export default {
   name: 'board-card',
   props: {
-    boardId: String,
+    boardTitle: String,
   },
   components: {},
   computed: {
     board() {
-      return this.$store.getters.getBoardById(this.boardId)
+      return this.$store.getters.getBoardByTitle(this.boardTitle)
     },
     cardCount() {
       return this.board.cards.length

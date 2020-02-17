@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col h-full overflow-hidden">
     <!-- board title -->
     <div
       class="flex flex-row flex-0 py-4 pl-8 border-b border-t border-r-0 border-l-0 border-neutral z-10 bg-white"

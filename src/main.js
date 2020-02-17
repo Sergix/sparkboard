@@ -7,7 +7,6 @@ import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
 import VuePageTransition from 'vue-page-transition'
 import VueModal from 'vue-js-modal'
-import { stitchApp } from '@/stitch/app'
 
 import '@/sass/globals.scss'
 import '@/sass/fonts.scss'
@@ -35,11 +34,6 @@ Sentry.init({
 })
 
 new Vue({
-  mounted() {
-    if (stitchApp.auth.isLoggedIn) {
-      store.commit('account/load')
-    }
-  },
   router,
   store,
   render: h => h(App),

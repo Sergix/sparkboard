@@ -47,6 +47,9 @@
       <span v-show="formError" class="text-secondary-darker">
         {{ formError }}
       </span>
+      <span v-show="authError" class="text-secondary-darker">
+        {{ authErrorMessage }}
+      </span>
       <FormButton
         @click="createAccount"
         type="submit"
@@ -64,6 +67,7 @@ import InputField from '@/components/ui/molecules/InputField'
 import CheckboxField from '@/components/ui/molecules/CheckboxField'
 import Form from '@/components/ui/atoms/Form'
 import * as FormUtils from '@/utils/form'
+import { mapState } from 'vuex'
 
 export default {
   name: 'create-account',
@@ -83,6 +87,10 @@ export default {
       formError: '',
     }
   },
+  computed: mapState({
+    authError: state => state.account.authError,
+    authErrorMessage: state => state.account.authErrorMessage,
+  }),
   methods: {
     //
     // TODO
