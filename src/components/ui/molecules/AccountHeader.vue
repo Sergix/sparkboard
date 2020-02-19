@@ -1,7 +1,11 @@
 <template>
   <nav class="flex flex-row text-2xl items-center pl-2 pr-12">
     <router-link to="/">
-      <SectionImage class="w-logo p-4" src="logo/logo.svg" alt="Sparkboard" />
+      <SectionImage
+        class="w-logo py-4 pr-4"
+        src="logo/logo.svg"
+        alt="Sparkboard"
+      />
     </router-link>
     <div class="flex-1 flex flex-row items-center ml-32 mt-1">
       <router-link to="dashboard">Boards</router-link>
@@ -34,6 +38,6 @@ export default {
 
 <style lang="sass" scoped>
 a
-  @apply px-8
+  @apply mr-16
   @apply font-medium
 </style>

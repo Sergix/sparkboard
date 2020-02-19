@@ -3,7 +3,7 @@ const getCardIndex = id => state.cards.findIndex(card => card.id === id)
 const state = {
   //
   // TODO
-  // have card management mapped to a stitch function?
+  // have card editing mapped to a stitch serverless function for storage?
   //
   cards: Array,
   title: String,

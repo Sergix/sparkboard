@@ -72,6 +72,7 @@ const routes = [
       transition: 'fade-in-left',
     },
     beforeEnter: (to, from, next) => {
+      console.log(stitchApp.auth)
       if (!stitchApp.auth.isLoggedIn) next('/login')
       else next()
     },

@@ -66,7 +66,7 @@
           <SectionImage
             class="w-1/3 p-8"
             alt="Example boards"
-            src="illustrations/undraw_content_structure.svg"
+            src="illustrations/content-structure.svg"
           />
         </div>
       </figure>
