@@ -21,6 +21,7 @@
 <script>
 // import RouteLink from '@/components/ui/atoms/RouteLink'
 import SectionImage from '@/components/ui/atoms/SectionImage'
+import { logout } from '@/stitch/account'
 
 export default {
   name: 'account-header',
@@ -30,7 +31,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('account/logout')
+      logout()
     },
   },
 }

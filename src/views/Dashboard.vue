@@ -50,6 +50,7 @@ export default {
       // NEED way to ensure no board titles are the same per user
       //
       this.$store.dispatch('loadBoard', title)
+      this.$router.push('board')
     },
   },
   mounted() {

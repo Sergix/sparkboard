@@ -60,7 +60,7 @@ import IconButton from '@/components/ui/molecules/IconButton'
 import { captureException } from '@sentry/browser'
 import Uploadcare from 'uploadcare-vue'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 const removeProperties = (object, ...keys) =>
   Object.entries(object).reduce(
@@ -68,14 +68,14 @@ const removeProperties = (object, ...keys) =>
       ...prev,
       ...(!keys.includes(key) && { [key]: value }),
     }),
-    {}
+    {},
   )
 
 export default {
   name: 'card-edit',
   props: {
-    card: {
-      type: Object,
+    id: {
+      type: String,
       required: true,
     },
   },
@@ -87,6 +87,12 @@ export default {
     Uploadcare,
   },
   computed: {
+    ...mapState({
+      cards: state => state.board.cards,
+    }),
+    card() {
+      return this.cards.find(card => card.id === this.id)
+    },
     cardForm() {
       // remove the id property since it won't be edited
       return removeProperties(this.card, 'id')
@@ -108,7 +114,7 @@ export default {
     saveCard() {
       // get all the properties that were modified
       const modifiedProps = Object.keys(this.card).filter(
-        key => this.card[key] !== this.cardForm[key]
+        key => this.card[key] !== this.cardForm[key],
       )
 
       // store only the modified values
@@ -116,7 +122,7 @@ export default {
         this.$store.dispatch('board/editCard', {
           id: this.card.id,
           [prop]: this.cardForm[prop],
-        })
+        }),
       )
 
       this.$emit('close')

@@ -8,7 +8,7 @@
         <h1 class="text-hero leading-none font-bold">
           Never again lose a spark of inspiration.
         </h1>
-        <object class="bg-print p-2 mt-4 z-neg-1 w-full mr-64"></object>
+        <object class="big-underline bg-print p-2 mt-4 z-neg-1 w-full"></object>
         <p class="text-2xl leading-relaxed mt-12">
           Sparkboard is a place to store your ideas when they come to you,
           whether by a simple thought in your head or coming across an
@@ -162,4 +162,7 @@ export default {
   h2
     @apply text-center
     @apply mb-12
+
+.big-underline
+  height: 1rem
 </style>

@@ -8,6 +8,7 @@ const state = {
   cards: Array,
   title: String,
   coverImg: String,
+  selectedCardId: String,
 }
 
 const getters = {}

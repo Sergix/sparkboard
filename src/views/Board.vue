@@ -4,7 +4,7 @@
     <div
       class="flex flex-row flex-0 py-4 pl-8 border-b border-t border-r-0 border-l-0 border-neutral z-10 bg-white"
     >
-      <div class="inline-flex" v-show="!editingTitle">
+      <div class="inline-flex" v-show="!isEditingTitle">
         <h4 class="mr-4">{{ boardTitle }}</h4>
         <IconButton
           icon="edit"
@@ -14,13 +14,13 @@
       </div>
       <div
         class="inline-flex"
-        v-show="editingTitle"
+        v-show="isEditingTitle"
         v-on:keypress.enter="finishEditBoardTitle"
       >
         <VariableTextInput
           class="border-none mr-1 text-xl font-medium"
           v-model="boardTitle"
-          v-focus="editingTitle"
+          v-focus="isEditingTitle"
         />
         <IconButton
           icon="check"
@@ -45,7 +45,7 @@
               class="mr-2"
               icon="edit"
               name="Edit Card"
-              v-on:clicked="openCardEdit(card)"
+              v-on:clicked="openCardEdit(card.id)"
             />
             <IconButton
               icon="x-circle"
@@ -95,6 +95,7 @@ import IconButton from '@/components/ui/molecules/IconButton'
 import Card from '@/components/ui/molecules/Card'
 import CardEdit from '@/components/ui/organisms/CardEdit'
 
+import board from '@/store/modules/board'
 import { mapState } from 'vuex'
 
 import { captureException } from '@sentry/browser'
@@ -114,8 +115,13 @@ export default {
   },
   data() {
     return {
-      editingTitle: false,
+      isEditingTitle: false,
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    // make sure we've already loaded a board first
+    if (board.state.title === String) next('/dashboard')
+    else next()
   },
   computed: {
     ...mapState({
@@ -151,11 +157,8 @@ export default {
     onUploadError(event) {
       if (event) captureException(event)
     },
-    openCardEdit(card) {
-      // TODO
-      // change to just passing the card ID, then let
-      // CardEdit obtain the object through a getter in vuex
-      this.$modal.show(CardEdit, { card }, { height: 'auto' })
+    openCardEdit(id) {
+      this.$modal.show(CardEdit, { id }, { height: 'auto' })
     },
     deleteCard(id) {
       this.$store.dispatch('board/removeCard', id)
@@ -166,13 +169,15 @@ export default {
         position: { x: left, y: top },
       })
     },
+    // TODO
+    // convert title editing to state machine?
     beginEditBoardTitle() {
-      this.editingTitle = true
+      this.isEditingTitle = true
     },
     finishEditBoardTitle() {
       // don't let title be empty
       if (!this.boardTitle) this.boardTitle = 'Board'
-      this.editingTitle = false
+      this.isEditingTitle = false
     },
     onCardResize(size, id) {
       this.$store.dispatch('board/editCard', {

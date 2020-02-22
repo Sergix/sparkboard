@@ -8,9 +8,16 @@ import AccountConfirmed from '../views/AccountConfirmed.vue'
 import Board from '../views/Board.vue'
 import Dashboard from '../views/Dashboard.vue'
 import { stitchApp } from '@/stitch/app'
-import store from '@/store'
 
 Vue.use(VueRouter)
+
+//
+// requiresAuth
+//   the page can only be accessed if logged in
+//
+// redirectToDashboard
+//   if logged in, redirect to dashboard
+//
 
 const routes = [
   {
@@ -19,6 +26,8 @@ const routes = [
     component: Landing,
     meta: {
       transition: 'fade',
+      requiresAuth: false,
+      redirectToDashboard: false,
     },
   },
   {
@@ -27,6 +36,8 @@ const routes = [
     component: ConfirmAccount,
     meta: {
       transition: 'fade',
+      requiresAuth: false,
+      redirectToDashboard: true,
     },
   },
   {
@@ -35,6 +46,8 @@ const routes = [
     component: AccountConfirmed,
     meta: {
       transition: 'fade',
+      requiresAuth: false,
+      redirectToDashboard: true,
     },
   },
   {
@@ -43,10 +56,8 @@ const routes = [
     component: Login,
     meta: {
       transition: 'fade-in-left',
-    },
-    beforeEnter: (to, from, next) => {
-      if (stitchApp.auth.isLoggedIn) next('/dashboard')
-      else next()
+      requiresAuth: false,
+      redirectToDashboard: true,
     },
   },
   {
@@ -55,13 +66,8 @@ const routes = [
     component: Board,
     meta: {
       transition: 'fade-in-left',
-    },
-    beforeEnter: (to, from, next) => {
-      if (!stitchApp.auth.isLoggedIn) next('/login')
-      // if board title is empty
-      if (store.getters.getCurrentBoard.state.title === String)
-        next('/dashboard')
-      else next()
+      requiresAuth: true,
+      redirectToDashboard: false,
     },
   },
   {
@@ -70,11 +76,8 @@ const routes = [
     component: Dashboard,
     meta: {
       transition: 'fade-in-left',
-    },
-    beforeEnter: (to, from, next) => {
-      console.log(stitchApp.auth)
-      if (!stitchApp.auth.isLoggedIn) next('/login')
-      else next()
+      requiresAuth: true,
+      redirectToDashboard: false,
     },
   },
   {
@@ -83,27 +86,36 @@ const routes = [
     component: CreateAccount,
     meta: {
       transition: 'fade-in-left',
-    },
-    beforeEnter: (to, from, next) => {
-      if (stitchApp.auth.isLoggedIn) next('/dashboard')
-      else next()
+      requiresAuth: false,
+      redirectToDashboard: true,
     },
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  // },
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // if not logged in, redirect to login
+    if (!stitchApp.auth.isLoggedIn) {
+      next('/login')
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.redirectToDashboard)) {
+    // if logged in, redirect to dashboard
+    if (stitchApp.auth.isLoggedIn) {
+      next('/dashboard')
+    } else {
+      next()
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
 })
 
 export default router

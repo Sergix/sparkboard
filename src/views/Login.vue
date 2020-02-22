@@ -45,6 +45,7 @@ import SectionImage from '@/components/ui/atoms/SectionImage'
 import InputField from '@/components/ui/molecules/InputField'
 import Form from '@/components/ui/atoms/Form'
 import { mapState } from 'vuex'
+import { login } from '@/stitch/account'
 
 export default {
   name: 'login',
@@ -65,10 +66,7 @@ export default {
   }),
   methods: {
     login() {
-      this.$store.dispatch('account/login', {
-        email: this.email,
-        password: this.password,
-      })
+      login(this.email, this.password)
     },
   },
 }

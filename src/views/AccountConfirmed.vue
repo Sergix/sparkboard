@@ -1,14 +1,15 @@
 <template>
   <div class="flex flex-row">
-    <div class="text-center w-full" v-show="!confirmed && !rejected">
-      <h3>Confirming account...</h3>
+    <div v-show="state.matches('pending')" class="text-center w-full">
+      <h3 class="text-state-pending">Confirming account...</h3>
     </div>
+
     <div
+      v-show="state.matches('confirmed')"
       class="w-full flex flex-row justify-center align-middle"
-      v-show="confirmed"
     >
       <section class="w-1/2 text-right mr-16 flex flex-col justify-center">
-        <h1>Your account is confirmed!</h1>
+        <h1 class="text-state-ok">Your account is confirmed!</h1>
         <p>
           Click
           <router-link to="dashboard" class="text-blue-700">here</router-link>
@@ -23,20 +24,22 @@
         />
       </section>
     </div>
-    <div v-show="rejected" class="w-full text-center">
-      <h3>Account confirmation failed.</h3>
-      <p class="text-neutral">{{ message }}</p>
+
+    <div v-show="state.matches('rejected')" class="w-full text-center">
+      <h3 class="text-state-error">Account confirmation failed.</h3>
+      <p class="text-neutral">{{ errorMessage }}</p>
       <section class="mt-16">
         <h4>Please retype your email to send a new confirmation email.</h4>
         <div class="mt-4">
           <TextInput
-            class="border border-neutral rounded-input p-2 mr-4"
+            class="border border-neutral rounded-input py-2 px-3 mr-4"
             name="email"
             placeholder="email"
-            type="email"
+            type="text"
             v-model="email"
           />
-          <FormButton type="submit" label="confirm" @click="resendEmail" />
+          <FormButton type="submit" label="Confirm" @click="resendEmail" />
+          <h5 class="text-state-error mt-2">{{ formErrorMessage }}</h5>
         </div>
       </section>
     </div>
@@ -44,15 +47,19 @@
 </template>
 
 <script>
-import SectionImage from '@/components/ui/atoms/SectionImage'
 import { stitchApp } from '@/stitch/app'
 import { UserPasswordAuthProviderClient } from 'mongodb-stitch-browser-sdk'
+import SectionImage from '@/components/ui/atoms/SectionImage'
 import TextInput from '@/components/ui/atoms/TextInput'
 import FormButton from '@/components/ui/atoms/FormButton'
-import { FORM_ERROR, validateEmail } from '@/utils/form'
+import FormUtils from '@/components/mixins/form'
+
+import { interpret } from 'xstate'
+import accountConfirmMachine from '@/machines/accountConfirm'
 
 export default {
   name: 'account-confirmed',
+  mixins: [FormUtils],
   components: {
     SectionImage,
     TextInput,
@@ -60,42 +67,45 @@ export default {
   },
   data() {
     return {
-      //
-      // TODO
-      // refactor this to use a more state-machine like approach
-      //
-      confirmed: false,
-      rejected: false,
+      state: accountConfirmMachine.initialState,
+      confirmService: interpret(accountConfirmMachine),
 
-      message: '',
-      emailPassClient: stitchApp.auth.getProviderClient(
-        UserPasswordAuthProviderClient.factory,
-      ),
       email: '',
+      emailPassClient: null,
+
+      errorMessage: '',
     }
   },
   methods: {
     resendEmail() {
-      if (validateEmail(this.email)) {
-        this.rejected = false
+      if (this.validateEmail(this.email)) {
         this.emailPassClient.resendConfirmationEmail(this.email)
         this.$router.push('login')
-      } else {
-        this.message = FORM_ERROR.email
       }
     },
   },
   created() {
+    this.emailPassClient = stitchApp.auth.getProviderClient(
+      UserPasswordAuthProviderClient.factory,
+    )
+
+    // initialize state machine transitions
+    this.confirmService
+      .onTransition(state => {
+        this.state = state
+      })
+      .start()
+
     // if either of the confirmation params are not present, go back to the landing page
     if (!this.$route.query.token || !this.$route.query.tokenId) {
       this.$router.push('/')
     }
     this.emailPassClient
       .confirmUser(this.$route.query.token, this.$route.query.tokenId)
-      .then(() => (this.confirmed = true))
+      .then(() => this.confirmService.send('CONFIRM'))
       .catch(err => {
-        this.rejected = true
-        this.message = err
+        this.confirmService.send('REJECT')
+        this.errorMessage = err
       })
   },
 }

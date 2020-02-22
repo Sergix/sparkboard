@@ -45,7 +45,7 @@
         />
       </Form>
       <span v-show="formError" class="text-secondary-darker">
-        {{ formError }}
+        {{ formErrorMessage }}
       </span>
       <span v-show="authError" class="text-secondary-darker">
         {{ authErrorMessage }}
@@ -66,11 +66,13 @@ import SectionImage from '@/components/ui/atoms/SectionImage'
 import InputField from '@/components/ui/molecules/InputField'
 import CheckboxField from '@/components/ui/molecules/CheckboxField'
 import Form from '@/components/ui/atoms/Form'
-import * as FormUtils from '@/utils/form'
+import FormUtils from '@/components/mixins/form'
 import { mapState } from 'vuex'
+import { create } from '@/stitch/account'
 
 export default {
   name: 'create-account',
+  mixins: [FormUtils],
   components: {
     InputField,
     CheckboxField,
@@ -84,7 +86,6 @@ export default {
       password: '',
       confirmedPassword: '',
       privacy: false,
-      formError: '',
     }
   },
   computed: mapState({
@@ -92,48 +93,16 @@ export default {
     authErrorMessage: state => state.account.authErrorMessage,
   }),
   methods: {
-    //
-    // TODO
-    // move form error to a prop in the Form component
-    //
-    setFormError(text) {
-      this.formError = text
-    },
     verifyFields() {
-      //
-      // TODO
-      // refactor this somehow; maybe move the setters to the validators?
-      // or move all these to set() functions in computed fields
-      //
-      if (!FormUtils.validateEmail(this.email)) {
-        this.setFormError(FormUtils.FORM_ERROR.email)
-        return
-      }
-      if (!FormUtils.validatePasswordLength(this.password)) {
-        this.setFormError(FormUtils.FORM_ERROR.password_length)
-        return
-      }
-      if (
-        !FormUtils.validatePasswordEquality(
-          this.password,
-          this.confirmedPassword,
-        )
-      ) {
-        this.setFormError(FormUtils.FORM_ERROR.password_equality)
-        return
-      }
-      if (!FormUtils.validatePrivacy(this.privacy)) {
-        this.setFormError(FormUtils.FORM_ERROR.privacy)
-        return
-      }
-      this.setFormError('')
+      if (!this.validateEmail(this.email)) return false
+      if (!this.validatePasswordLength(this.password)) return false
+      if (!this.validatePasswordEquality(this.password, this.confirmedPassword))
+        return false
+      if (!this.validatePrivacy(this.privacy)) return false
+      return true
     },
     createAccount() {
-      this.verifyFields()
-      this.$store.dispatch('account/create', {
-        email: this.email,
-        password: this.password,
-      })
+      if (this.verifyFields()) create(this.email, this.password)
     },
   },
 }

@@ -30,6 +30,12 @@ module.exports = {
           default: '#00473e',
           darker: '#00332d',
         },
+        state: {
+          warning: '#fbc126',
+          error: '#fa6151',
+          pending: '#707070',
+          ok: '#00473e',
+        },
         accent: '#ffa8ba',
         neutral: '#707070',
         print: '#121212',
