@@ -35,7 +35,7 @@ const mutations = {
   setCards(_, cardList) {
     state.cards = cardList
   },
-  setBoard(_, board) {
+  set(_, board) {
     state.cards = board.cards
     state.title = board.title
     state.coverImg = board.coverImg

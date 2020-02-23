@@ -9,7 +9,7 @@
         <IconButton
           icon="edit"
           name="Edit board title"
-          v-on:clicked="beginEditBoardTitle"
+          @click.native="beginEditBoardTitle"
         />
       </div>
       <div
@@ -25,7 +25,7 @@
         <IconButton
           icon="check"
           name="Save board title"
-          v-on:clicked="finishEditBoardTitle"
+          @click.native="finishEditBoardTitle"
         />
       </div>
     </div>
@@ -45,12 +45,12 @@
               class="mr-2"
               icon="edit"
               name="Edit Card"
-              v-on:clicked="openCardEdit(card.id)"
+              @click.native="openCardEdit(card.id)"
             />
             <IconButton
               icon="x-circle"
               name="Delete Card"
-              v-on:clicked="deleteCard(card.id)"
+              @click.native="deleteCard(card.id)"
             />
           </li>
         </draggable>
@@ -95,7 +95,8 @@ import IconButton from '@/components/ui/molecules/IconButton'
 import Card from '@/components/ui/molecules/Card'
 import CardEdit from '@/components/ui/organisms/CardEdit'
 
-import board from '@/store/modules/board'
+// we do not have access to 'this' in beforeRouteEnter()
+import board from '@/store/modules/currentBoard'
 import { mapState } from 'vuex'
 
 import { captureException } from '@sentry/browser'
@@ -125,15 +126,15 @@ export default {
   },
   computed: {
     ...mapState({
-      cards: state => state.board.cards,
-      title: state => state.board.title,
+      cards: state => state.currentBoard.cards,
+      title: state => state.currentBoard.title,
     }),
     boardTitle: {
       get() {
         return this.title
       },
       set(value) {
-        this.$store.dispatch('board/editTitle', value)
+        this.$store.dispatch('currentBoard/editTitle', value)
       },
     },
     cardList: {
@@ -141,13 +142,13 @@ export default {
         return this.cards
       },
       set(value) {
-        this.$store.dispatch('board/setCards', value)
+        this.$store.dispatch('currentBoard/setCards', value)
       },
     },
   },
   methods: {
     onUploadSuccess(event) {
-      this.$store.dispatch('board/addCard', {
+      this.$store.dispatch('currentBoard/addCard', {
         id: event.uuid,
         title: 'New Card',
         desc: 'Description',
@@ -161,10 +162,10 @@ export default {
       this.$modal.show(CardEdit, { id }, { height: 'auto' })
     },
     deleteCard(id) {
-      this.$store.dispatch('board/removeCard', id)
+      this.$store.dispatch('currentBoard/removeCard', id)
     },
     moveCard(left, top, id) {
-      this.$store.dispatch('board/editCard', {
+      this.$store.dispatch('currentBoard/editCard', {
         id,
         position: { x: left, y: top },
       })
@@ -180,7 +181,7 @@ export default {
       this.isEditingTitle = false
     },
     onCardResize(size, id) {
-      this.$store.dispatch('board/editCard', {
+      this.$store.dispatch('currentBoard/editCard', {
         id,
         size,
       })

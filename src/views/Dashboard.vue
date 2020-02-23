@@ -14,8 +14,8 @@
             class="m-2 w-2/5 cursor-pointer"
             v-for="board in boards"
             :key="board.title"
-            :boardTitle="board.title"
-            @click="openBoard(board.title)"
+            :board="board"
+            @click.native="openBoard(board.title)"
           />
           <div class="flex flex-col w-2/5 m-2 justify-center items-center">
             <IconButton icon="plus-circle" name="Create new board" />
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     ...mapState({
-      boards: state => state.boards,
+      boards: state => state.boards.boards,
     }),
   },
   methods: {
@@ -49,12 +49,12 @@ export default {
       // TODO
       // NEED way to ensure no board titles are the same per user
       //
-      this.$store.dispatch('loadBoard', title)
+      this.$store.dispatch('boards/loadBoard', title)
       this.$router.push('board')
     },
   },
   mounted() {
-    this.$store.dispatch('getBoards')
+    this.$store.dispatch('boards/get')
   },
 }
 </script>

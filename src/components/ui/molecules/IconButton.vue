@@ -1,5 +1,5 @@
 <template>
-  <button type="button" @click="$emit('clicked')">
+  <button type="button">
     <SectionImage :src="path" :alt="name" />
   </button>
 </template>
