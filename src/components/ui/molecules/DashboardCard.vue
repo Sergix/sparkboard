@@ -16,7 +16,7 @@
         </p>
         <p class="flex-0">{{ cardCount }} cards</p>
       </div>
-      <img class="flex-1 w-1/2 rounded-section" :src="board.coverImg" />
+      <img class="flex-1 w-1/2 rounded-section" :src="board.img" />
     </div>
   </section>
 </template>

@@ -8,4 +8,18 @@ const mongodb = stitchApp.getServiceClient(
 
 const boardsCollection = mongodb.db('app').collection('boards')
 
-export { mongodb, boardsCollection }
+async function getUserBoards() {
+  const query = {
+    owner_id: stitchApp.auth.user.id,
+  }
+
+  return await boardsCollection
+    .find(query)
+    .toArray()
+    .then(boards => {
+      return boards
+    })
+    .catch(err => console.error(err))
+}
+
+export { mongodb, boardsCollection, getUserBoards }

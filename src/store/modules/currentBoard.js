@@ -5,10 +5,9 @@ const state = {
   // TODO
   // have card editing mapped to a stitch serverless function for storage?
   //
-  cards: Array,
-  title: String,
-  coverImg: String,
-  selectedCardId: String,
+  cards: [],
+  cardIDs: [],
+  title: '',
 }
 
 const getters = {}
@@ -38,7 +37,6 @@ const mutations = {
   set(_, board) {
     state.cards = board.cards
     state.title = board.title
-    state.coverImg = board.coverImg
   },
 }
 
@@ -64,6 +62,10 @@ const actions = {
   },
   setCards({ commit }, cardList) {
     commit('setCards', cardList)
+  },
+
+  save({ commit }, title) {
+    commit('boards/editBoard', { title, newData: state }, { root: true })
   },
 }
 

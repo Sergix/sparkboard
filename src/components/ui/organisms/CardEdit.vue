@@ -105,8 +105,8 @@ export default {
     },
     saveCard() {
       // get all the properties that were modified
-      const modifiedProps = Object.keys(this.card).filter(
-        key => this.card[key] !== this.cardForm[key],
+      const modifiedProps = Object.keys(this.cardForm).filter(
+        key => this.cardForm[key] !== this.card[key],
       )
 
       // store only the modified values

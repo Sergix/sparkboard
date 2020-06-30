@@ -3,8 +3,6 @@ const AUTH_ERROR = {
   '-1': 'Unknown error. Please try again.',
 }
 
-// TODO
-// probably replace some of this functionality with xstate eventually
 const state = {
   authError: false,
   authErrorMessage: '',

@@ -30,6 +30,7 @@
 <script>
 import DashboardCard from '@/components/ui/molecules/DashboardCard'
 import IconButton from '@/components/ui/molecules/IconButton'
+import { getUserBoards } from '@/stitch/db'
 import { mapState } from 'vuex'
 
 export default {
@@ -45,16 +46,13 @@ export default {
   },
   methods: {
     openBoard(title) {
-      //
-      // TODO
-      // NEED way to ensure no board titles are the same per user
-      //
       this.$store.dispatch('boards/loadBoard', title)
       this.$router.push('board')
     },
   },
   mounted() {
-    this.$store.dispatch('boards/get')
+    const boards = getUserBoards()
+    this.$store.commit('boards/set', boards)
   },
 }
 </script>

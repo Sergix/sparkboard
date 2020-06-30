@@ -15,7 +15,7 @@
           </div>
           <img
             class="w-3/4 rounded-section"
-            :src="boardForm.coverImg"
+            :src="boardForm.img"
             alt="Card image"
           />
         </section>
@@ -74,7 +74,7 @@ export default {
     return {
       boardForm: {
         title: this.board.title,
-        coverImg: this.board.coverImg,
+        img: this.board.img,
         desc: this.board.desc,
       },
     }
@@ -83,7 +83,7 @@ export default {
     onUploadSuccess(event) {
       this.$store.dispatch('boards/editBoard', {
         title: this.title,
-        coverImg: event.cdnUrl,
+        img: event.cdnUrl,
       })
     },
     onUploadError(event) {
@@ -92,7 +92,7 @@ export default {
     save() {
       this.$store.dispatch('boards/editBoard', {
         title: this.board.title,
-        newBoard: this.boardForm,
+        newData: this.boardForm,
       })
       this.$emit('close')
     },

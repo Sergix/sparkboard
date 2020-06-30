@@ -121,8 +121,13 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     // make sure we've already loaded a board first
-    if (board.state.title === String) next('/dashboard')
+    if (!board.state.title) next('/dashboard')
     else next()
+  },
+  beforeRouteLeave(to, from, next) {
+    // save the board before the page is left
+    this.$store.dispatch('currentBoard/save', this.title)
+    next()
   },
   computed: {
     ...mapState({
@@ -170,8 +175,6 @@ export default {
         position: { x: left, y: top },
       })
     },
-    // TODO
-    // convert title editing to state machine?
     beginEditBoardTitle() {
       this.isEditingTitle = true
     },
